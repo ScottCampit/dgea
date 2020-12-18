@@ -187,21 +187,21 @@ First, we'll define a function to do this filtering. I used the default threshol
 ```{r}
 # Create a function that filters data using ROBPCA
 removeOutliers = function(data, id){
-  """
-  removeOutliers uses Robust PCA to compute the orthogonal distance from PCA and the covariate matrix to determine which datapoints are outliers. Then it separates those datapoints and returns a data object of the class geneObj.
+  
+  # removeOutliers uses Robust PCA to compute the orthogonal distance from PCA and the covariate matrix to determine which datapoints are outliers. Then it separates those datapoints and returns a data object of the class geneObj.
 
-  INPUTS:
-    data: a dataframe or numerical matrix of the RNASeq counts.
-    id:   a chracter or numerical vector containing the gene identifiers. 
+  # INPUTS:
+    # data: a dataframe or numerical matrix of the RNASeq counts.
+    # id:   a chracter or numerical vector containing the gene identifiers. 
 
-  OUTPUT:
-    geneObj: A class that has the following objects embedded in it:
-      data: a dataframe or numerical matrix of the RNASeq counts that are not determined to be an outlier.
-      outlier_data: a dataframe or numerical matrix of the RNASeq counts that are determined to be outliers by RPCA.
-      id: A character or numerical vector containing corresponding identifiers that are not outliers.
-      flag: A boolean vector that shows which rows are outliers in the original dataset.
-      outlier_id: A character or numerical vector containing corresponding identifiers to outliers
-  """
+  # OUTPUT:
+    # geneObj: A class that has the following objects embedded in it:
+      # data: a dataframe or numerical matrix of the RNASeq counts that are not determined to be an outlier.
+      # outlier_data: a dataframe or numerical matrix of the RNASeq counts that are determined to be outliers by RPCA.
+      # id: A character or numerical vector containing corresponding identifiers that are not outliers.
+      # flag: A boolean vector that shows which rows are outliers in the original dataset.
+      # outlier_id: A character or numerical vector containing corresponding identifiers to outliers
+  
   pca_obj = PcaHubert(data)
   filtered_data = data[pca_obj@flag, ]
   filtered_id = id[pca_obj@flag]
@@ -321,7 +321,6 @@ pvalue = matrix(tmp,
                 byrow=TRUE)
 colnames(pvalue) = colnames(Xfinal)
 rownames(pvalue) = rownames(Xfinal)
-
 ```
 That's it!
 
